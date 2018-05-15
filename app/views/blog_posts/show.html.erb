@@ -10,14 +10,17 @@
     <%= @blog_post.title%>
   </div>
   <div class="panel-body">
-    <p><strong>By: </strong><%= @blog_post.author%></p>
+    <p><strong>By: </strong><%= @blog_post.user.email%></p>
     <p><%= time_ago_in_words(@blog_post.created_at)%> ago</p>
     <p><%= @blog_post.blog_entry%></p>
   </div>
+  <% if current_user.id == @blog_post.user_id %>
   <div class="panel-footer">
     <%= link_to "Edit", edit_blog_post_path(id: @blog_post.id), class: "btn btn-warning" %>
       <%= link_to "All Blog Posts", blog_posts_path, class: "btn btn-default" %>
   </div>
+  <% end %>
+
 </div>
 
 <div class="panel panel-success">
